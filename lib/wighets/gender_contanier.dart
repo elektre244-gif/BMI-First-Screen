@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
 class GenderContaner extends StatelessWidget {
-  const GenderContaner({super.key, required this.name, required this.icon, this.onTap, required this.color});
+  const GenderContaner({
+    super.key,
+    required this.name,
+    required this.icon,
+    this.onTap,
+    required this.color,
+  });
   final String name;
   final IconData icon;
-    final Function()? onTap;
- final Color color;
+  final Function()? onTap;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap:onTap,
+        onTap: onTap,
         child: Container(
           height: 180,
           width: 155,

@@ -1,10 +1,10 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/result_screen.dart';
 import 'package:flutter_application_1/wighets/age_container.dart';
+import 'package:flutter_application_1/wighets/app_bar.dart';
 import 'package:flutter_application_1/wighets/gender_contanier.dart';
-import 'package:flutter_application_1/wighets/hight_container.dart';
 import 'package:flutter_application_1/wighets/wight_container.dart';
-
-import '../wighets/gender_contanier.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,23 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
   bool IsFemale = false;
   int wight = 30;
   int age = 20;
+  int height = 50;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff1C2135),
-      appBar: AppBar(
-        backgroundColor: const Color(0xff00000040),
-        title: const Text(
-          "BMI Calculator",
-          style: TextStyle(
-            color: Color(0xffFFFFFF),
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: CostamAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 21),
         child: Column(
@@ -70,7 +60,58 @@ class _HomeScreenState extends State<HomeScreen> {
 
             const SizedBox(height: 25),
             //hight container
-            HightContainer(),
+            Container(
+              width: double.infinity,
+              height: 189,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Color(0xff333244),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "Height",
+                    style: TextStyle(color: Color(0xff8B8C9E), fontSize: 30),
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: TextStyle(
+                          color: Color(0xffFFFFFF),
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "cm",
+                        style: TextStyle(
+                          color: Color(0xffFFFFFF),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Slider(
+                    min: 0,
+                    max: 300,
+                    activeColor: Color(0xffE83D67),
+                    value: height.toDouble(),
+                    onChanged: (Value) {
+                      setState(() {
+                        height = Value.toInt();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
 
             const SizedBox(height: 29),
             //wigth & age row
@@ -114,12 +155,24 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 55,
-        color: const Color(0xffE83D67),
-        alignment: Alignment.center,
-        child: const Text("calculate", style: TextStyle(fontSize: 35)),
+      bottomNavigationBar: InkWell(
+        onTap: () {
+          double finalHeight = height / 100;
+          double bmiResult = wight / pow(finalHeight, 2);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ResultScreen(bmiResult, result: bmiResult),
+            ),
+          );
+        },
+        child: Container(
+          width: double.infinity,
+          height: 55,
+          color: const Color(0xffE83D67),
+          alignment: Alignment.center,
+          child: const Text("calculate", style: TextStyle(fontSize: 35)),
+        ),
       ),
     );
   }

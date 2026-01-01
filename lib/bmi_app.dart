@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
-
+import 'package:flutter_application_1/screens/result_screen.dart';
 
 class BmiApp extends StatelessWidget {
   const BmiApp({super.key});
@@ -8,10 +8,12 @@ class BmiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     debugShowCheckedModeBanner: false,
-     home:  HomeScreen(
-
-    ) );
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
+        scaffoldBackgroundColor: Color(0xff00000040),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    );
   }
 }
-

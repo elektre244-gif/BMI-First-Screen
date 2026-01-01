@@ -9,8 +9,8 @@ class HightContainer extends StatefulWidget {
 }
 
 class _HightContainerState extends State<HightContainer> {
-int height=50;
 
+int height=50;
   @override
   Widget build(BuildContext context) {
     return Container(

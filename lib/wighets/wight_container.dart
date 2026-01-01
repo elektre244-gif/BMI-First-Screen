@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class WightContainer extends StatelessWidget {
-WightContainer({super.key, required this.wight, this.increaseOnTap, this.decreasOnTap});
- int wight=30;
- final void Function()? increaseOnTap;
+  WightContainer({
+    super.key,
+    required this.wight,
+    this.increaseOnTap,
+    this.decreasOnTap,
+  });
+  int wight = 30;
+  final void Function()? increaseOnTap;
   final void Function()? decreasOnTap;
-
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ WightContainer({super.key, required this.wight, this.increaseOnTap, this.decreas
             Text("Wight", style: TextStyle(fontSize: 20, color: Colors.white)),
             SizedBox(height: 5),
             Text(
-             wight.toString(),
+              wight.toString(),
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
@@ -36,6 +40,7 @@ WightContainer({super.key, required this.wight, this.increaseOnTap, this.decreas
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 FloatingActionButton.small(
+                  heroTag: 1,
                   onPressed: decreasOnTap,
                   backgroundColor: Color(0xff888C9E),
 
@@ -45,7 +50,8 @@ WightContainer({super.key, required this.wight, this.increaseOnTap, this.decreas
                   child: Icon(Icons.remove, color: Colors.white),
                 ),
                 FloatingActionButton.small(
-                  onPressed:increaseOnTap,
+                  heroTag: 2,
+                  onPressed: increaseOnTap,
                   backgroundColor: Color(0xff888C9E),
 
                   shape: RoundedRectangleBorder(

@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class AgeContainer extends StatelessWidget {
- AgeContainer({super.key, required this.age, this.increaseOnTap, this.decreasOnTap});
+  AgeContainer({
+    super.key,
+    required this.age,
+    this.increaseOnTap,
+    this.decreasOnTap,
+  });
 
- int age=20;
- final void Function()? increaseOnTap;
+  int age = 20;
+  final void Function()? increaseOnTap;
   final void Function()? decreasOnTap;
 
   @override
@@ -37,6 +42,7 @@ class AgeContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 FloatingActionButton.small(
+                  heroTag: 3,
                   onPressed: decreasOnTap,
                   backgroundColor: Color(0xff888C9E),
 
@@ -46,7 +52,8 @@ class AgeContainer extends StatelessWidget {
                   child: Icon(Icons.remove, color: Colors.white),
                 ),
                 FloatingActionButton.small(
-                  onPressed:increaseOnTap,
+                  heroTag: 4,
+                  onPressed: increaseOnTap,
                   backgroundColor: Color(0xff888C9E),
 
                   shape: RoundedRectangleBorder(
